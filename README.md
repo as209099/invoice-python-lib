@@ -45,7 +45,7 @@
     ...,
     '123'
 ]
->>> prize_list = invoice.redeem_invoice(invoice_list, my_numbers)
+>>> prize_list = invoice.redeem(invoice_list, my_numbers)
 >>> print(prize_list)
 [
     ['12345678', None],
