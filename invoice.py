@@ -107,7 +107,7 @@ class Invoice:
         """
         return self.__get_numbers__(self.__previous_soup__)
     
-    def redeem_invoice(self, invoice_list:list, numbers_list:list) -> list:
+    def redeem(self, invoice_list:list, numbers_list:list) -> list:
         """
         發票號碼兌獎
 
@@ -118,15 +118,17 @@ class Invoice:
 
         Examples 範例
         --------
-        >>> invoice_list = Invoice().get_numbers()
+        >>> invoice = Invoice()
+        >>> invoice_list = invoice.get_numbers()
         >>> my_numbers = [
             '12345678',
             '12345677',
             ...,
             '123'
         ]
-        >>> prize_list = Invoice().redeem_invoice(invoice_list, my_numbers)
-        >>> [
+        >>> prize_list = invoice.redeem(invoice_list, my_numbers)
+        >>> print(prize_list)
+        [
             ['12345678', None],
             ['12345677', '六獎'],
             ...,
