@@ -56,13 +56,13 @@
 ```
 
 ## 使用之Library
-- <a href="https://requests.readthedocs.io/en/latest/">Requests</a>
+- <a href="https://docs.aiohttp.org/en/stable/">aiohttp</a>
 - <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup4</a>
 
 ## 安裝
 ### 使用到的Library
 ```
-pip install requests
+pip install aiohttp
 pip install beautifulsoup4
 ```
 ### 下載library
