@@ -1,4 +1,5 @@
-import requests
+import aiohttp
+import asyncio
 from bs4 import BeautifulSoup
 
 class Invoice:
@@ -23,13 +24,61 @@ class Invoice:
         ['頭獎', '17858097'],
         ...
         """
-        response = requests.get('https://invoice.etax.nat.gov.tw/index.html')
-        response.encoding = 'UTF-8'
-        self.__soup__ = BeautifulSoup(response.text, "html.parser")
+        self.__soup__ = None
+        self.__previous_soup__ = None
+        asyncio.run(self.__run_task__())
 
-        response = requests.get('https://invoice.etax.nat.gov.tw/lastNumber.html')
-        response.encoding = 'UTF-8'
-        self.__previous_soup__ = BeautifulSoup(response.text, "html.parser")
+    async def __run_task__(self) -> None:
+        """
+        非同步fetch網頁內容
+
+        Parameters 參數
+        ----------
+        None：無
+
+        Response 回傳
+        ----------
+        None：無
+        """
+        tasks = [
+            self.__fetch_data__(),
+            self.__fetch_previous_period_data__()
+        ]
+        await asyncio.gather(*tasks)
+
+    async def __fetch_data__(self) -> None:
+        """
+        非同步fetch網頁內容
+
+        Parameters 參數
+        ----------
+        None：無
+
+        Response 回傳
+        ----------
+        None：無
+        """
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://invoice.etax.nat.gov.tw/index.html', ssl=False) as response:
+                response = await response.text()
+                self.__soup__ = BeautifulSoup(response, "html.parser")
+
+    async def __fetch_previous_period_data__(self) -> None:
+        """
+        非同步fetch網頁內容
+
+        Parameters 參數
+        ----------
+        None：無
+
+        Response 回傳
+        ----------
+        None：無
+        """
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://invoice.etax.nat.gov.tw/lastNumber.html', ssl=False) as response:
+                response = await response.text()
+                self.__previous_soup__ = BeautifulSoup(response, "html.parser")
 
     def get_years_and_months(self) -> str:
         """
