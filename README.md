@@ -4,6 +4,17 @@
 ## 簡介
 本程式主要用於取得中華民國財政部統一發票號碼，並用於發票號碼兌獎。
 
+## 安裝
+### 本地端安裝
+```
+git clone git@github.com:as209099/invoice-python-lib.git
+python3 -m setup.py install
+```
+### Pip PyPI安裝
+```
+pip install invoice
+```
+
 ## 使用方法
 
 ```python
@@ -59,18 +70,6 @@
 - <a href="https://docs.aiohttp.org/en/stable/">aiohttp</a>
 - <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup4</a>
 
-## 安裝
-### 使用到的Library
-```
-pip install aiohttp
-pip install beautifulsoup4
-```
-### 下載library
-```
-mkdir Invoice
-cd invoice
-git clone git@github.com:as209099/invoice-python-lib.git
-```
 enjoy coding!
 
 ## 授權
